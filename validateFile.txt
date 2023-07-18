@@ -1,0 +1,105 @@
+import re
+import os
+import xml.etree.ElementTree as ET
+
+
+class MyDrawEPC:
+    def __init__(self, file):
+        self.file = file
+
+    def input_file(self):
+        with open(self.file, 'r', encoding='utf-8') as file:
+            content = file.read()
+            print(content)
+
+            if content:
+                return True  # content read
+            else:
+                return False
+
+            # file_size = os.path.getsize(file)
+            # return file_size == expected_size
+            # def file_corrupt(,file, expected_size):
+    #     file_size = os.path.getsize(file1)
+    #     return file_size == expected_size
+
+
+file = "my-draw_EPC.xml"
+file_check = MyDrawEPC(file)
+if file_check.input_file():
+    print("file is not corrupted")
+else:
+    print("corrupted")
+
+
+def is_valid_xml(xml_file):
+    try:
+        tree = ET.parse(xml_file)
+
+        # pattern = r'^<[a-zA-Z_][a-zA-Z0-9_-]*>.*</[a-zA-Z_][a-zA-Z0-9_-]*>$'
+        # with open(xml_file,'r',encoding='utf-8') as file:
+        #     content = file.read()
+        #     print(content)
+        # for a in tree.iter():
+        #     if not re.match(pattern,content ):
+        #         return False
+
+        return True
+    except ET.ParseError:
+        return False
+
+
+xml_file = 'my-draw_EPC.xml'
+if is_valid_xml(xml_file):
+    print("The xmlFile '{xml_file}' is a valid XML.")
+else:
+    print("The xmlFile '{xml_file}' is not a valid XML.")
+# def corruption_check(file):
+#     try:
+#         with open(file, 'r') as file:
+#             rd = file.read(512)
+#             print(rd)
+#
+#         if rd:
+#             return False
+#         else:
+#             return True
+#
+#     except IOError:
+#         return True
+#
+#
+# file = "my-draw_EPC.xml"
+#
+# if corruption_check(file):
+#     print("File is Corrupt")
+#
+# else:
+#     print("File is Valid")
+#
+#
+# def validate_tag(xml_file):
+#     try:
+#         tree = ET.parse(xml_file)
+#         root = tree.getroot()
+#
+#         expected_tag = ['style','office', 'config', 'draw', 'style:name' ]
+#
+#         for tag in expected_tag:
+#             if root.find(tag) is None:
+#                 missing_tag.append(tag)
+#                 return False
+#
+#         return True
+#     except ET.ParseError:
+#         return False
+#
+#
+# missing_tag = []
+# xml_file = "my-draw_EPC.xml"
+#
+# if validate_tag(xml_file):
+#     print("All Tags")
+# else:
+#     print("Miss Some Tags")
+#     print(missing_tag)
