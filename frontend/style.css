@@ -1,1 +1,374 @@
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+⁩ 
+
+
+/* Radio Options */
+#radioSection {
+    display: flex;
+    gap:20px;
+    height: 100%;
+    flex-wrap: wrap;
+}
+
+#radioSection *{
+    width: 48%;
+}
+
+#radioSection select{
+    display: inline-block;
+    width:30%;
+}
+
+#radioSection p{
+    font-size: 0.9rem;
+    font-weight: 600;
+    color:black;
+    padding: 0;
+    margin: 0;
+}
+
+.radio-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      border-radius: 10px;
+      /* width:48%; */
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      height: 85%;
+    }
+
+    .radio-label input[type="radio"] {
+      display: none;
+    }
+
+    .radio-label.selected {
+      outline: 2px solid #0000ff;
+    }
+
+    .upload-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border: 2px dashed #c0c0c0;
+      padding: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .upload-label:hover {
+      background-color: #e0e0e0;
+    }
+
+    .upload-label i {
+      font-size: 48px;
+      color: black;
+      margin-bottom: 10px;
+    }
+
+    #browse-files {
+      background-color: blue;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #browse-files:hover {
+      background-color: #0000ff;
+    }
+
+    #conversion-description {
+      margin-top: 20px;
+    }
+
+    #error-message {
+      color: red;
+    }
+
+    #upload-icon {
+      font-size: 50px;
+    }
+
+    #upload-icon i {
+      color: black;
+    }
+
+#fileSection {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+ #uploadArea {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      flex: 1 1 auto;
+      border: 2px dashed #c0c0c0;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .uploadArea:hover {
+      background-color: #e0e0e0;
+  }
