@@ -20,6 +20,48 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="subsec-2">
+                <div class="subsubsec subsubsec-1" id="preview">
+                    <div id="preview-box">
+                        <div class="preview-menu">
+                            <ul>
+                                <li><button onclick="goBack()">Home</button></li>
+                                <li><button id="convert-btn" onclick="sendFile()">Next</button></li>
+
+                            </ul>
+                            
+                        </div>
+                        <div id="previewer"></div>
+                        <div id="text-response">
+                            <h2>Review Your System Description</h2>
+                            <p>This is description created according to the diagram. Feel free to edit it</p>
+                        <textarea rows="5" cols="100" id="text-area" readonly></textarea>
+  <br>
+  <button id="edit-button" onclick="enableEdit()">Edit</button>
+  <button id="save-button" onclick="saveText()" style="display: none;">Save</button>
+                        </div>  
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
     <script src="script.js"></script>
 </body>
