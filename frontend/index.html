@@ -20,6 +20,97 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* @@ Waleed Ahmed  */
+
+<div id="fileSection" style="display: none;">
+                            <div onclick="goBack()" style="cursor: pointer;"><i class="fas fa-arrow-left"></i> Back
+                            </div>
+                            <h2 id="selectedOption"></h2>
+                            <div id="uploadArea" class="upload-label">
+                                <div id="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                <div>Drag and drop your file here</div>
+                                <div>or</div>
+                                <button id="browse-files">Browse Files</button>
+                            </div>
+                            <input type="file" id="fileInput" accept=".svg, .xml" onchange="handleFile()"
+                                style="display: none;">
+                            <div id="fileName" style="margin-top: 10px;"></div>
+                            <div id="errorSection" style="display: none; color: red;">Unsupported file type! Please
+                                select an SVG or XML file.</div>
+                        </div>
+                    </div>
+                    <div class="subsubsubsec subsubsubsec-2" id="hide-when-preview"></div>
+                </div>
+                <div class="subsubsec subsubsec-2">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
     <script src="script.js"></script>
 </body>
