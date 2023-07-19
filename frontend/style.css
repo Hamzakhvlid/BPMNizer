@@ -1,1 +1,255 @@
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*@⁨Abdullah Proya⁩ */
+.upload-label:hover {
+    background-color: #e0e0e0;
+}
+
+.upload-label i {
+    font-size: 48px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+#browse-files {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.search-container input {
+    flex-grow: 1;
+    border: none;
+    font-size: 1.3rem;
+}
+
+.search-container input:focus {
+    outline: none;
+}
+
+.search-container button {
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-container button i{
+    font-size: 1.3rem;
+
+}
+
+.search-container button:hover {
+    background-color: #0000cc;
+}
