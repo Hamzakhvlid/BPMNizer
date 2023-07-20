@@ -1,0 +1,143 @@
+import sqlite3
+
+DATABASE = 'hospital_records.db'
+
+def create_table():
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS patients (
+            id INTEGER PRIMARY KEY,
+            name TEXT NOT NULL,
+            age INTEGER,
+            gender TEXT
+        )
+    ''')
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+def insert_sample_data():
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    # Insert some sample data for patients
+    patients_data = [
+        ('John Doe', 30, 'Male'),
+        ('Jane Smith', 25, 'Female'),
+        ('Michael Johnson', 40, 'Male')
+    ]
+
+    cursor.executemany('INSERT INTO patients (name, age, gender) VALUES (?, ?, ?)', patients_data)
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+def get_patients():
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT * FROM patients')
+    patients = cursor.fetchall()
+    result = [{'id': p[0], 'name': p[1], 'age': p[2], 'gender': p[3]} for p in patients]
+
+    cursor.close()
+    conn.close()
+
+    return result
+
+def get_patient(patient_id):
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT * FROM patients WHERE id=?', (patient_id,))
+    patient = cursor.fetchone()
+
+    cursor.close()
+    conn.close()
+
+    if patient:
+        result = {'id': patient[0], 'name': patient[1], 'age': patient[2], 'gender': patient[3]}
+    else:
+        result = {'message': 'Patient not found'}
+
+    return result
+
+def create_patient(name, age, gender):
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    cursor.execute('INSERT INTO patients (name, age, gender) VALUES (?, ?, ?)',
+                   (name, age, gender))
+
+    conn.commit()
+    patient_id = cursor.lastrowid
+
+    cursor.close()
+    conn.close()
+
+    result = {'id': patient_id, 'name': name, 'age': age, 'gender': gender}
+
+    return result
+
+def update_patient(patient_id, name, age, gender):
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT * FROM patients WHERE id=?', (patient_id,))
+    patient = cursor.fetchone()
+
+    if not patient:
+        cursor.close()
+        conn.close()
+        return {'message': 'Patient not found'}
+
+    cursor.execute('''
+        UPDATE patients
+        SET name=?, age=?, gender=?
+        WHERE id=?
+    ''', (name, age, gender, patient_id))
+
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+    result = {'id': patient_id, 'name': name, 'age': age, 'gender': gender}
+
+    return result
+
+def delete_patient(patient_id):
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT * FROM patients WHERE id=?', (patient_id,))
+    patient = cursor.fetchone()
+
+    if not patient:
+        cursor.close()
+        conn.close()
+        return {'message': 'Patient not found'}
+
+    cursor.execute('DELETE FROM patients WHERE id=?', (patient_id,))
+
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+    return {'message': 'Patient deleted successfully'}
+
+if __name__ == '__main__':
+    create_table()
+    insert_sample_data()
+
+    # Example usage:
+    print(get_patients())
+    print(get_patient(2))
+    print(create_patient('David Lee', 35, 'Male'))
+    print(update_patient(1, 'John Doe Jr.', 31, 'Male'))
+    print(delete_patient(3))
