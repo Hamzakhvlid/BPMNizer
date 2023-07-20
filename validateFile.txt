@@ -1,0 +1,99 @@
+import sqlite3
+
+# Initialize the database connection
+conn = sqlite3.connect('bank.db')
+cursor = conn.cursor()
+
+# Create a table to store account information
+cursor.execute('''CREATE TABLE IF NOT EXISTS accounts (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    account_number TEXT UNIQUE NOT NULL,
+                    balance REAL NOT NULL
+                  )''')
+
+# Commit the changes and close the database connection
+conn.commit()
+conn.close()
+
+# Get account balance function
+def get_balance(account_number):
+    conn = sqlite3.connect('bank.db')
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT balance FROM accounts WHERE account_number=?', (account_number,))
+    result = cursor.fetchone()
+
+    conn.close()
+
+    if result:
+        return result[0]
+    else:
+        return None
+
+# Deposit function
+def deposit(account_number, amount):
+    conn = sqlite3.connect('bank.db')
+    cursor = conn.cursor()
+
+    current_balance = get_balance(account_number)
+    if current_balance is None:
+        return False, 'Account does not exist.'
+
+    new_balance = current_balance + amount
+    cursor.execute('UPDATE accounts SET balance=? WHERE account_number=?', (new_balance, account_number))
+    conn.commit()
+    conn.close()
+
+    return True, new_balance
+
+# Withdraw function
+def withdraw(account_number, amount):
+    conn = sqlite3.connect('bank.db')
+    cursor = conn.cursor()
+
+    current_balance = get_balance(account_number)
+    if current_balance is None:
+        return False, 'Account does not exist.'
+
+    if current_balance < amount:
+        return False, 'Insufficient balance.'
+
+    new_balance = current_balance - amount
+    cursor.execute('UPDATE accounts SET balance=? WHERE account_number=?', (new_balance, account_number))
+    conn.commit()
+    conn.close()
+
+    return True, new_balance
+
+if __name__ == '__main__':
+    # Examples of using the functions for account operations
+    account_number = '123456789'
+    initial_balance = 1000.0
+
+    # Create a new account if it does not exist
+    conn = sqlite3.connect('bank.db')
+    cursor = conn.cursor()
+    cursor.execute('INSERT OR IGNORE INTO accounts (account_number, balance) VALUES (?, ?)',
+                   (account_number, initial_balance))
+    conn.commit()
+    conn.close()
+
+    # Check account balance
+    balance = get_balance(account_number)
+    print(f'Account {account_number} balance: {balance}')
+
+    # Make a deposit
+    deposit_amount = 500.0
+    success, new_balance = deposit(account_number, deposit_amount)
+    if success:
+        print(f'Deposit of {deposit_amount} successful. New balance: {new_balance}')
+    else:
+        print(f'Deposit failed. Reason: {new_balance}')
+
+    # Make a withdrawal
+    withdrawal_amount = 300.0
+    success, new_balance = withdraw(account_number, withdrawal_amount)
+    if success:
+        print(f'Withdrawal of {withdrawal_amount} successful. New balance: {new_balance}')
+    else:
+        print(f'Withdrawal failed. Reason: {new_balance}')
